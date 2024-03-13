@@ -1,4 +1,4 @@
-import {IPaper} from './paper';
+import {Paper} from './paper';
 
 export interface IUser {
     costStatus: number[];
@@ -6,5 +6,5 @@ export interface IUser {
     level: number;
     actionStatus: number[];
     currentAction: number;
-    paperStatus: IPaper[];
+    paperStatus: Paper[];
 };

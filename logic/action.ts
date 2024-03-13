@@ -1,30 +1,25 @@
 import { MONEY, RESEARCH_POINT, SAN } from './common';
 import { IUser } from './user';
 
-export interface IAction {
+export class Action  {
     id: number;
     title: string;
     isInstance: boolean;
     maxLevel: number;
-    modifier: ((origin:number, level:number)=>number | number)[];
-    sideEffect: ((user:IUser) => IUser)[]
-};
-
-export class Action implements IAction {
-    id: number;
-    title: string;
-    isInstance: boolean;
-    maxLevel: number;
+    timeLimit: number;
     modifier: ((origin:number, level:number)=>number | number)[];
     sideEffect: ((user: IUser) => IUser)[];
-
-    constructor(id:number, title: string, isInstance: boolean, maxLevel: number, modifier: ((origin:number, level:number)=>number | number)[]) {
+    sanEffect: ((san:number) => number) | null; 
+    
+    constructor(id: number, title: string, isInstance: boolean, maxLevel: number, timeLimit: number, modifier: ((origin:number, level:number)=>number | number)[], sideEffect: ((user: IUser) => IUser)[], sanEffect: ((san:number) => number) | null) {
         this.id = id;
         this.title = title;
         this.isInstance = isInstance;
         this.maxLevel = maxLevel;
+        this.timeLimit = timeLimit
         this.modifier = modifier;
-        this.sideEffect = [];
+        this.sideEffect = sideEffect;
+        this.sanEffect = sanEffect;
     }
 
     canAction(user: IUser) : [boolean, number] {
