@@ -1,9 +1,10 @@
 import {IPaper} from './paper';
 
 export interface IUser {
-    costStatus: [number];
+    costStatus: number[];
     time: number;
     level: number;
-    actionStatus: {string: number};
-    paperStatus: [IPaper];
+    actionStatus: number[];
+    currentAction: number;
+    paperStatus: IPaper[];
 };
